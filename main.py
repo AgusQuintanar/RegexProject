@@ -1,8 +1,8 @@
 class Reemplazador_REGEX():
 
     def __init__(self):
-        self.cadena = 'abaaaaa'
-        self.expresion_regular = 'ab * + caba'
+        self.cadena = 'abaaaabaaanbbb'
+        self.expresion_regular = 'aba * + bbb *'
         self.expresion_regular = self.simplificar_er()
 
         self.cadena_reemplazadora = 'R'
@@ -47,11 +47,7 @@ class Reemplazador_REGEX():
         while x <= len(cadena) - len(er):
             if cadena[x] == er[0]:
                 if cadena[x:x+len(er)-1] == er[:-1]:
-                    
-
                     limite_match = x + len(er)-1
-
-
                     while  limite_match  < len(cadena):
                         if cadena[limite_match] == er[-1]:
                             limite_match += 1
@@ -68,7 +64,7 @@ class Reemplazador_REGEX():
         return cadena
                     
 
-class RPN():
+class RPN(): #Reverse Polish Notation
     def __init__(self):
         self.regex = Reemplazador_REGEX()
         self.expresion_infija = self.regex.expresion_regular
@@ -97,9 +93,6 @@ class RPN():
                 indice += 1
             else:
                 if dato == '+':
-
-                    print("la listilla", lista_expr_post)
-                    print("la cadena es la cadena:",cadena)
 
                     if len(lista_expr_post) - indice > 2:
                         if lista_expr_post[indice + 2] == "·":
@@ -149,11 +142,7 @@ class RPN():
                         lista_expr_post.pop(indice)
                         indice = 1
 
-                        print(cadena)
-
-                    # cadena = self.regex.encontrar_cerradura(cadena, list(lista_expr_post[indice-1]))
-                    # lista_expr_post = lista_expr_post[2:]
-                    # indice = 1
+              
                 
                 elif dato == '·':
                     lista_expr_post[indice] = lista_expr_post[indice-2] + lista_expr_post[indice-1]
@@ -197,9 +186,5 @@ print("REGEX Polaco:", rpn.expresion_postfijo)
 
 
 
-
-
-
-                    
 
 
